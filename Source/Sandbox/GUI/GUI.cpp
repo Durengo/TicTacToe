@@ -316,6 +316,8 @@ namespace GWSandbox
         // i_instance->m_cellSize = static_cast<float>(i_instance->m_windowResolution.width) / i_instance->m_gridSize;
         // i_instance->m_cellSize = std::min(i_instance->m_windowResolution.width, i_instance->m_windowResolution.height) / static_cast<float>(i_instance->m_gridSize);
 
+        SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+
         InitWindow(m_windowResolution.width, m_windowResolution.height, m_windowName.c_str());
 
         SetTargetFPS(m_targetFPS);
@@ -381,6 +383,8 @@ namespace GWSandbox
 
         while (!WindowShouldClose()) // Detect window close button or ESC key
         {
+            i_instance->m_windowResolution.width = GetScreenWidth();
+            i_instance->m_windowResolution.height = GetScreenHeight();
             // Update
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && i_instance->i_gameLogic->GetGameState() != GridWorks::GameState::GameOver)
             {
